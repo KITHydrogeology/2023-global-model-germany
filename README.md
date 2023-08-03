@@ -7,10 +7,9 @@ ENTER CITATION AFTER PUBLICATION
 Contact: benedikt.heudorfer@kit.edu
 
 ORCIDs of authors: 
-
-B. Heudorfer: 0000-0001-7801-9375 
-T. Liesch: 0000-0001-8648-5333 
-S. Broda: 0000-0001-6858-6368
+- B. Heudorfer: 0000-0001-7801-9375
+- T. Liesch: 0000-0001-8648-5333
+- S. Broda: 0000-0001-6858-6368
 
 For a detailed description of the workflow, please read the publication. Please adapt all absolute loading/saving and software paths within the scripts before running them.
 
