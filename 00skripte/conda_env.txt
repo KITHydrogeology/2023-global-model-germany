@@ -1,0 +1,12 @@
+conda create -n py38tf29 python=3.8
+conda install scikit-learn=0.23.0
+conda install tensorflow=2.9
+conda install numpy=1.22.4
+conda install pandas
+conda install bayesian-optimization
+conda install matplotlib
+conda install statsmodels
+conda install spyder
+conda install pydot
+conda install seaborn 
+conda install uncertainties
