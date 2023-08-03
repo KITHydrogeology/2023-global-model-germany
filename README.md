@@ -12,8 +12,8 @@ For a detailed description of the workflow, please read the publication. Please 
 
 How to make this thing running:
 
-    extract folder_structure.rar to YOUR_PREFERED_PATH
-    extract codes.rar into YOUR_PREFERED_PATH/00skripte
-    extract data.rar into YOUR_PREFERED_PATH/01data
-    run model.py or model_CV.py to produce results in YOUR_PREFERED_PATH/02ergebnisse
-    rund model_PFI.py or plots_v4.py to produce graphs inYOUR_PREFERED_PATH/03grafiken
+1. extract folder_structure.rar to YOUR_PREFERED_PATH
+2. extract codes.rar into YOUR_PREFERED_PATH/00skripte
+3. extract data.rar into YOUR_PREFERED_PATH/01data
+4. run model.py or model_CV.py to produce results in YOUR_PREFERED_PATH/02ergebnisse
+5. rund model_PFI.py or plots_v4.py to produce graphs inYOUR_PREFERED_PATH/03grafiken
