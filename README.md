@@ -17,4 +17,4 @@ How to make this thing running:
 4. run model.py or model_CV.py to produce results in ./02ergebnisse
 5. rund model_PFI.py or plots_v4.py to produce graphs in ./03grafiken
 
-For further descriptions of the workflow, as well as presentation and discussion of the results, we refer to the publication. 
+For further descriptions of the workflow, as well as presentation and discussion of the results, please refer to the publication. 
