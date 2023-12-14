@@ -128,57 +128,57 @@ fig.savefig(pth_out+'losscurves.pdf', dpi=600, bbox_inches='tight')
 #%% losscurves - with and wihtout lrs - single graphs
 
 
-# chose one option
+# # chose one option
 
-vari = "tsfeat"
-# vari = "envfeat"
+# vari = "tsfeat"
+# # vari = "envfeat"
 
-#------------------------------------------------------------------------------
+# #------------------------------------------------------------------------------
 
-pths_in = pth+"02ergebnisse/"+vari+"/"
-pths_in = [pths_in+item+'/losshistory.csv' for item in os.listdir(pths_in) if 'run' in item]
-losscurves = list()
-for i in range(len(pths_in)):
-    temp = pd.read_csv(pths_in[i], sep=";", index_col=0)
-    temp = pd.merge(temp, pd.DataFrame({'run':np.repeat(i,len(temp))}),
-                    left_index=True,right_index=True)
-    losscurves.append(temp)
+# pths_in = pth+"02ergebnisse/"+vari+"/"
+# pths_in = [pths_in+item+'/losshistory.csv' for item in os.listdir(pths_in) if 'run' in item]
+# losscurves = list()
+# for i in range(len(pths_in)):
+#     temp = pd.read_csv(pths_in[i], sep=";", index_col=0)
+#     temp = pd.merge(temp, pd.DataFrame({'run':np.repeat(i,len(temp))}),
+#                     left_index=True,right_index=True)
+#     losscurves.append(temp)
 
-pths_in_nolrs = pth+"02ergebnisse/"+vari+"_nolrs/"
-pths_in_nolrs = [pths_in_nolrs+item+'/losshistory.csv' for item in os.listdir(pths_in_nolrs) if 'run' in item]
-losscurves_nolrs = list()
-for i in range(len(pths_in_nolrs)):
-    temp = pd.read_csv(pths_in_nolrs[i], sep=";", index_col=0)
-    temp = pd.merge(temp, pd.DataFrame({'run':np.repeat(i,len(temp))}),
-                    left_index=True,right_index=True)
-    losscurves_nolrs.append(temp)
+# pths_in_nolrs = pth+"02ergebnisse/"+vari+"_nolrs/"
+# pths_in_nolrs = [pths_in_nolrs+item+'/losshistory.csv' for item in os.listdir(pths_in_nolrs) if 'run' in item]
+# losscurves_nolrs = list()
+# for i in range(len(pths_in_nolrs)):
+#     temp = pd.read_csv(pths_in_nolrs[i], sep=";", index_col=0)
+#     temp = pd.merge(temp, pd.DataFrame({'run':np.repeat(i,len(temp))}),
+#                     left_index=True,right_index=True)
+#     losscurves_nolrs.append(temp)
 
 
 
-fig, axs = plt.subplots(1,1,figsize=(6,5))
+# fig, axs = plt.subplots(1,1,figsize=(6,5))
 
-for i in range(len(losscurves)):
-    lci_nolrs = losscurves_nolrs[i]
-    axs.plot(lci_nolrs.loss, color = "tab:cyan", linewidth=0.5, linestyle="dashed")
-    axs.plot(lci_nolrs.val_loss, color = "#ffc30f", linewidth=0.5, linestyle="dashed")
+# for i in range(len(losscurves)):
+#     lci_nolrs = losscurves_nolrs[i]
+#     axs.plot(lci_nolrs.loss, color = "tab:cyan", linewidth=0.5, linestyle="dashed")
+#     axs.plot(lci_nolrs.val_loss, color = "#ffc30f", linewidth=0.5, linestyle="dashed")
 
-for i in range(len(losscurves)):
-    lci = losscurves[i]
-    axs.plot(lci.loss, color = "tab:blue", linewidth=1)
-    axs.plot(lci.val_loss, color = "tab:orange", linewidth=1)
+# for i in range(len(losscurves)):
+#     lci = losscurves[i]
+#     axs.plot(lci.loss, color = "tab:blue", linewidth=1)
+#     axs.plot(lci.val_loss, color = "tab:orange", linewidth=1)
     
-axs.set_ylabel("MSE")
-axs.set_xlabel("epoch")
-axs.set_ylim(0.1,0.5)
-axs.legend([Line2D([0], [0], color='tab:blue', linewidth=1),
-            Line2D([0], [0], color='tab:orange', linewidth=1),
-            Line2D([0], [0], color='tab:cyan', linestyle='dashed', linewidth=0.75),
-            Line2D([0], [0], color='#ffc30f', linestyle='dashed', linewidth=0.75)],
-           ['train', 'val', 'train (no lrs)', 'val (no lrs)'], 
-           loc='upper left', fontsize="small")
+# axs.set_ylabel("MSE")
+# axs.set_xlabel("epoch")
+# axs.set_ylim(0.1,0.5)
+# axs.legend([Line2D([0], [0], color='tab:blue', linewidth=1),
+#             Line2D([0], [0], color='tab:orange', linewidth=1),
+#             Line2D([0], [0], color='tab:cyan', linestyle='dashed', linewidth=0.75),
+#             Line2D([0], [0], color='#ffc30f', linestyle='dashed', linewidth=0.75)],
+#            ['train', 'val', 'train (no lrs)', 'val (no lrs)'], 
+#            loc='upper left', fontsize="small")
 
-fig.savefig(pth_out+'losscurves_'+vari+'.pdf', dpi=600, bbox_inches='tight')
-# fig.show()
+# fig.savefig(pth_out+'losscurves_'+vari+'.pdf', dpi=600, bbox_inches='tight')
+# # fig.show()
 
 
 #%% losscurves - appendix
@@ -320,6 +320,58 @@ def get_scores_cv(pth):
     out = pd.concat([item.NSE for item in allscores], axis=1)
     return(out)
 
+#----------
+
+# get RMSE scores
+def get_scores_RMSE(pth):
+    pths = [pth+item+'/scores.csv' for item in os.listdir(pth) if 'run' in item]
+    out = list()
+    for i in range(len(pths)):
+        temp = pd.read_csv(pths[i], sep=";", index_col=0)
+        out.append(temp.RMSE)
+    out = pd.concat(out, axis=1)
+    return(out)
+    
+def get_scores_RMSE_cv(pth):
+    pths = [pth+item+'/' for item in os.listdir(pth) if 'run' in item]
+    allscores = list()
+    for i in range(len(pths)):
+        tempout = list()
+        temppth = [pths[i]+item for item in os.listdir(pths[i]) if 'scores' in item]
+        for j in range(len(temppth)):
+            tempout.append(pd.read_csv(temppth[j], sep=';', index_col=0))
+        tempout = pd.concat(tempout).sort_index()
+        allscores.append(tempout)
+    out = pd.concat([item.RMSE for item in allscores], axis=1)
+    return(out)
+
+#----------
+
+# get R2 scores
+def get_scores_R2(pth):
+    pths = [pth+item+'/scores.csv' for item in os.listdir(pth) if 'run' in item]
+    out = list()
+    for i in range(len(pths)):
+        temp = pd.read_csv(pths[i], sep=";", index_col=0)
+        out.append(temp.R2)
+    out = pd.concat(out, axis=1)
+    return(out)
+    
+def get_scores_R2_cv(pth):
+    pths = [pth+item+'/' for item in os.listdir(pth) if 'run' in item]
+    allscores = list()
+    for i in range(len(pths)):
+        tempout = list()
+        temppth = [pths[i]+item for item in os.listdir(pths[i]) if 'scores' in item]
+        for j in range(len(temppth)):
+            tempout.append(pd.read_csv(temppth[j], sep=';', index_col=0))
+        tempout = pd.concat(tempout).sort_index()
+        allscores.append(tempout)
+    out = pd.concat([item.R2 for item in allscores], axis=1)
+    return(out)
+
+
+
 #------------------------------------------------------------------------------
 
 # get scores for environmental features
@@ -419,6 +471,37 @@ benchmark = pd.concat(benchmark)
 benchmark.index = [item[7:-4] for item in filst]
 print("NSE_bench="+str(np.median(benchmark.NSE))[0:6])
 
+#------------------------------------------------------------------------------
+
+
+# get RMSE scores for table 3
+print("RMSE_env="+str(np.mean(get_scores_RMSE(pths_env).quantile(0.1, axis=1)))[0:6])
+print("RMSE_env_cv="+str(np.mean(get_scores_RMSE_cv(pths_env_cv).quantile(0.1, axis=1)))[0:6])
+print("RMSE_ts="+str(np.mean(get_scores_RMSE(pths_ts).quantile(0.1, axis=1)))[0:6])
+print("RMSE_ts_cv="+str(np.mean(get_scores_RMSE_cv(pths_ts_cv).quantile(0.1, axis=1)))[0:6])
+print("RMSE_ablation="+str(np.mean(get_scores_RMSE(pths_ablation).quantile(0.1, axis=1)))[0:6])
+print("RMSE_ablation_cv="+str(np.mean(get_scores_RMSE_cv(pths_ablation_cv).quantile(0.1, axis=1)))[0:6])
+print("RMSE_rnd9="+str(np.mean(get_scores_RMSE(pths_rnd9).quantile(0.1, axis=1)))[0:6])
+print("RMSE_rnd9_cv="+str(np.mean(get_scores_RMSE_cv(pths_rnd9_cv).quantile(0.1, axis=1)))[0:6])
+print("RMSE_rnd18="+str(np.mean(get_scores_RMSE(pths_rnd18).quantile(0.1, axis=1)))[0:6])
+print("RMSE_rnd18_cv="+str(np.mean(get_scores_RMSE_cv(pths_rnd18_cv).quantile(0.1, axis=1)))[0:6])
+print("RMSE_bench="+str(np.mean(benchmark.RMSE))[0:6])
+
+print("\n\n")
+
+# get R2 scores for table 3
+print("R2_env="+str(np.mean(get_scores_R2(pths_env).quantile(0.1, axis=1)))[0:6])
+print("R2_env_cv="+str(np.mean(get_scores_R2_cv(pths_env_cv).quantile(0.1, axis=1)))[0:6])
+print("R2_ts="+str(np.mean(get_scores_R2(pths_ts).quantile(0.1, axis=1)))[0:6])
+print("R2_ts_cv="+str(np.mean(get_scores_R2_cv(pths_ts_cv).quantile(0.1, axis=1)))[0:6])
+print("R2_ablation="+str(np.mean(get_scores_R2(pths_ablation).quantile(0.1, axis=1)))[0:6])
+print("R2_ablation_cv="+str(np.mean(get_scores_R2_cv(pths_ablation_cv).quantile(0.1, axis=1)))[0:6])
+print("R2_rnd9="+str(np.mean(get_scores_R2(pths_rnd9).quantile(0.1, axis=1)))[0:6])
+print("R2_rnd9_cv="+str(np.mean(get_scores_R2_cv(pths_rnd9_cv).quantile(0.1, axis=1)))[0:6])
+print("R2_rnd18="+str(np.mean(get_scores_R2(pths_rnd18).quantile(0.1, axis=1)))[0:6])
+print("R2_rnd18_cv="+str(np.mean(get_scores_R2_cv(pths_rnd18_cv).quantile(0.1, axis=1)))[0:6])
+print("R2_bench="+str(np.mean(benchmark.R2))[0:6])
+
 
 #------------------------------------------------------------------------------
 
@@ -477,7 +560,7 @@ meanscores = pd.DataFrame({"model":["single","env","ts","rnd9","rnd18","ablation
                             })
 meanscores.to_csv(pth_out+"table_meanscores.csv", sep=";", index=False)
 
-#%%
+
 
 #------------------------------------------------------------------------------
 # plot scoreplot
@@ -552,7 +635,7 @@ axs.plot(NSE_ablation_cv.median(axis=1).sort_values(), plotpos,
          linestyle="dashed", color="blueviolet", alpha=0.8)
 
 # NSE benchmark
-axs.plot(benchmark.NSE.sort_values(), plotpos, color="k", linewidth=1)
+axs.plot(benchmark.NSE.sort_values(), plotpos, color="k", linewidth=2)
 
 
 axs.set_xlim(0.4,0.96)
@@ -618,7 +701,7 @@ axs.plot(NSE_ablation.median(axis=1).sort_values(), plotpos, color="blueviolet",
 axs.plot(NSE_ablation_cv.median(axis=1).sort_values(), plotpos, linestyle="dashed", color="blueviolet", alpha=0.8)
 
 # NSE benchmark
-axs.plot(benchmark.NSE.sort_values(), plotpos, color="k", linewidth=1)
+axs.plot(benchmark.NSE.sort_values(), plotpos, color="k", linewidth=2)
 
 axs.set_xlim(0.4,0.96)
 axs.set_xlabel("NSE")

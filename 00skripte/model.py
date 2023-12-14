@@ -282,7 +282,7 @@ for ii in range(len(HP_seeds)):
     os.mkdir(pth_out_i)
     
     
-    #% data preprocessing
+    #%% data preprocessing
     
     #Initialize containers
     IDlen = list()
@@ -358,7 +358,7 @@ for ii in range(len(HP_seeds)):
     datafullwide = pd.pivot(datafull.drop(["P",'rH',"T","Tsin"], axis = 1), columns = "ID")
     
     
-    #% modelling
+    #%% modelling
     
     #-----------------------------    
     # Model
@@ -490,7 +490,7 @@ for ii in range(len(HP_seeds)):
     
     
     
-    #% Evaluate
+    #%% Evaluate
     
     # Minimum val MSE
     MSEvalmin = np.min(model_history.history['val_loss'])
