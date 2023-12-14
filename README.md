@@ -2,7 +2,7 @@
 
 This repository enables reproduction of the results presented in:
 
-ENTER CITATION AFTER PUBLICATION
+PLACE FOR DOI AFTER PUBLICATION
 
 Contact: benedikt.heudorfer@kit.edu
 
