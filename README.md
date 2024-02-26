@@ -1,8 +1,7 @@
 # 2023-global-model-germany
 
 This repository enables reproduction of the results presented in:
-
-PLACE FOR DOI AFTER PUBLICATION
+https://doi.org/10.5194/hess-28-525-2024
 
 Contact: benedikt.heudorfer@kit.edu
 
